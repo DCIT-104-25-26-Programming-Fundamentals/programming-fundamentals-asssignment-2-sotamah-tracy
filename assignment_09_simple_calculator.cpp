@@ -71,5 +71,133 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <limits>
 using namespace std;
+
+double add(double a, double b)
+{
+    return a + b;
+}
+
+double subtractValues(double a, double b)
+{
+    return a - b;
+}
+
+double multiply(double a, double b)
+{
+    return a * b;
+}
+
+double divide(double a, double b)
+{
+    return a / b;
+}
+
+int modulus(int a, int b)
+{
+    return a % b;
+}
+
+double exponentiate(double a, double b)
+{
+    return pow(a, b);
+}
+
+void displayMenu()
+{
+    cout << "============================" << endl;
+    cout << "     SIMPLE CALCULATOR" << endl;
+    cout << "============================" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+    cout << "Select an operation (1-7): ";
+}
+
+int main()
+{
+    while (true)
+    {
+        displayMenu();
+        int choice;
+        cin >> choice;
+
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid choice. Please enter a number from 1 to 7." << endl;
+            continue;
+        }
+
+        if (choice == 7)
+        {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+        double num1, num2;
+        int int1, int2;
+
+        if (choice == 5)
+        {
+            cout << "Enter first number : ";
+            cin >> int1;
+            cout << "Enter second number: ";
+            cin >> int2;
+
+            if (int2 == 0)
+            {
+                cout << "Error: Cannot divide by zero." << endl;
+                continue;
+            }
+
+            cout << fixed << setprecision(2);
+            cout << "Result: " << int1 << " % " << int2 << " = " << modulus(int1, int2) << endl;
+            continue;
+        }
+
+        cout << "Enter first number : ";
+        cin >> num1;
+        cout << "Enter second number: ";
+        cin >> num2;
+
+        cout << fixed << setprecision(2);
+        switch (choice)
+        {
+            case 1:
+                cout << "Result: " << num1 << " + " << num2 << " = " << add(num1, num2) << endl;
+                break;
+            case 2:
+                cout << "Result: " << num1 << " - " << num2 << " = " << subtractValues(num1, num2) << endl;
+                break;
+            case 3:
+                cout << "Result: " << num1 << " * " << num2 << " = " << multiply(num1, num2) << endl;
+                break;
+            case 4:
+                if (num2 == 0.0)
+                {
+                    cout << "Error: Cannot divide by zero." << endl;
+                }
+                else
+                {
+                    cout << "Result: " << num1 << " / " << num2 << " = " << divide(num1, num2) << endl;
+                }
+                break;
+            case 6:
+                cout << "Result: " << num1 << " ^ " << num2 << " = " << exponentiate(num1, num2) << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number from 1 to 7." << endl;
+                break;
+        }
+    }
+
+    return 0;
+}
 
